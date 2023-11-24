@@ -1,0 +1,48 @@
+package org.zovian.dto;
+
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import java.security.PrivateKey;
+import java.util.Arrays;
+@Setter
+@Getter
+@EqualsAndHashCode
+@ToString
+public class RestaurantManagementSystem {
+    private static final int MAX_COMBO_NUM = 20;
+    private int comboNum = 0;
+    private Combo[] combos;
+
+    public RestaurantManagementSystem() {
+        this.combos = new Combo[MAX_COMBO_NUM];
+
+    }
+
+    public void addCombo(Combo combo){
+        if (comboNum < MAX_COMBO_NUM) {
+            //add the combo
+            combos[comboNum] = combo;
+        } else {
+            //reach the cap
+            System.out.printf("There are %d combos already. Add combo failed", comboNum);
+        }
+
+    }
+
+    @Override
+    public String toString() {
+        String comboStr = "[";
+        for (Combo combo : combos) {
+            if (combo != null) {
+                comboStr += combo + ", ";
+            }
+        }
+        comboStr += "]";
+        return "RestaurantManagementSystem{" +
+                "combos=" + Arrays.toString(combos) +
+                '}';
+    }
+}
